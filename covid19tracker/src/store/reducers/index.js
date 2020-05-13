@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import { casesReducer } from './reducer';
+import { casesReducer as cases } from './reducer';
 
 export default combineReducers({
-    casesReducer
+    cases
 });

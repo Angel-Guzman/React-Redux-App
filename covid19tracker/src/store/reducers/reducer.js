@@ -1,13 +1,14 @@
-import { FETCH_TOTAL_START } from '../actions';
+import { FETCH_TOTAL_START, FETCH_TOTAL_SUCCESS } from '../actions';
 
 const initialState = {
+    isFetching: false,
+    error: '',
     Global: {
-        NewConfirmed: 0,
-        TotalConfirmed: 0,
-        NewDeaths: 0,
-        TotalDeaths: 0,
-        NewRecovered: 0,
-        TotalRecovered: 0
+        NewConfirmed: null,
+        TotalConfirmed: null,
+        NewDeaths: null,
+        TotalDeaths: null,
+        TotalRecovered: null
     }
 }
 
@@ -16,9 +17,13 @@ export const casesReducer = (state = initialState, action) => {
         case FETCH_TOTAL_START:
             return {
                 ...state,
-                Global: {
-                    NewConfirmed: action.payload
-                }
+                    isFetching: true
+            }
+        case FETCH_TOTAL_SUCCESS:
+            return {
+                ...state,
+                isFetching: false,
+                Global: action.payload
             }
         default:
             return state;
